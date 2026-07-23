@@ -6,7 +6,7 @@
 
 # DCOS Context Package para ChatGPT — RRSS Platform
 
-**Formato:** chatgpt-context-package/v2 · **Rama de origen:** main · **Commit de origen:** `d5eb066ef948c338b4895f5754930dc394fb9360`
+**Formato:** chatgpt-context-package/v2 · **Rama de origen:** main · **Commit de origen:** `704449c2c9dd8fa31d4811d14df844c6d7627f39`
 
 Este paquete no reemplaza al corpus documental de `docs/` ni es una fuente manual de verdad:
 es un artefacto derivado, regenerado desde un `sourceCommit` exacto. No debe editarse
@@ -35,7 +35,7 @@ manualmente. Su manifest privado (`chatgpt-context-manifest.json`) nunca se publ
 | `product-limits` | `docs/product/non-goals.md` | `b7ce7e2e3e5f` |
 | `technical-architecture` | `docs/architecture/system-architecture.md`, `docs/architecture/technology-stack.md` | `5f65e56423ce` |
 | `multitenancy-security` | `docs/architecture/multitenancy-and-isolation.md`, `docs/architecture/identity-and-access.md`, `docs/architecture/security-and-privacy.md` | `d71ff1f1ce6d` |
-| `operational-rules` | `docs/operations/roadmap.md`, `docs/operations/backlog.md` | `9f2602ec4a23` |
+| `operational-rules` | `docs/operations/roadmap.md`, `docs/operations/backlog.md` | `fdde821ba937` |
 | `workflow` | `docs/decisions/ADR-001-project-independence.md` | `f3bd14ae040d` |
 | `restrictions` | `docs/architecture/technology-stack.md`, `docs/architecture/infrastructure-and-operations.md` | `11f25c740c38` |
 
@@ -119,7 +119,11 @@ ordinarios de la aplicación, ambientes separados sin compartir datos reales.
 El roadmap y el backlog son planeación conceptual, no autorización: ningún incremento,
 bloque o criterio de cierre queda autorizado para implementación por el solo hecho de estar
 documentado o listado. Avanzar de bloque, cerrar un incremento, o hacer merge a `main`
-requiere una decisión y autorización explícitas e independientes en cada caso.
+requiere una decisión y autorización explícitas e independientes en cada caso. Una
+definición documental de un bloque tampoco lo inicia ni sustituye su autorización
+explícita: define su alcance, pero el bloque permanece no iniciado hasta que exista esa
+decisión independiente. Caso vigente: RRSS-I04-B (campañas) está definido documentalmente,
+no iniciado, y pendiente de autorización.
 
 ## Gobierno DCOS y flujo de trabajo
 
@@ -162,7 +166,7 @@ o dependiente de ambiente permanece externa a la imagen del contenedor.
 - RRSS-I03-B — Navegación, estados globales y estructura de aplicación (cerrado local y remotamente, commit `401e452939d797bd12a2cfaead42e3a84b6dbead`)
 - RRSS-I03-C — Patrones de datos, formularios y confirmaciones (cerrado local y remotamente, commit `e7597fb66a9d8bc66aee01fd915be3890a0b8e01`)
 
-**Siguiente bloque:** RRSS-I04-B (campañas), pendiente de definición y autorización
+**Siguiente bloque:** RRSS-I04-B (campañas), definido documentalmente, no iniciado, pendiente de autorización
 
 **Bloques de RRSS-I04 no iniciados:** RRSS-I04-B (campañas), RRSS-I04-C (contenido y calendario editorial), RRSS-I04-D (revisión y aprobación)
 
