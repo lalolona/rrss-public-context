@@ -6,7 +6,7 @@
 
 # DCOS Context Package para ChatGPT — RRSS Platform
 
-**Formato:** chatgpt-context-package/v2 · **Rama de origen:** main · **Commit de origen:** `434772c78cd967d7960e1066bb5da82b8598683a`
+**Formato:** chatgpt-context-package/v2 · **Rama de origen:** main · **Commit de origen:** `3ab321d7c609da9e196c8b90711303ff8965c196`
 
 Este paquete no reemplaza al corpus documental de `docs/` ni es una fuente manual de verdad:
 es un artefacto derivado, regenerado desde un `sourceCommit` exacto. No debe editarse
@@ -35,7 +35,7 @@ manualmente. Su manifest privado (`chatgpt-context-manifest.json`) nunca se publ
 | `product-limits` | `docs/product/non-goals.md` | `b7ce7e2e3e5f` |
 | `technical-architecture` | `docs/architecture/system-architecture.md`, `docs/architecture/technology-stack.md` | `5f65e56423ce` |
 | `multitenancy-security` | `docs/architecture/multitenancy-and-isolation.md`, `docs/architecture/identity-and-access.md`, `docs/architecture/security-and-privacy.md` | `d71ff1f1ce6d` |
-| `operational-rules` | `docs/operations/roadmap.md`, `docs/operations/backlog.md` | `8e5dd3da84a5` |
+| `operational-rules` | `docs/operations/roadmap.md`, `docs/operations/backlog.md` | `8660ac715097` |
 | `workflow` | `docs/decisions/ADR-001-project-independence.md` | `f3bd14ae040d` |
 | `restrictions` | `docs/architecture/technology-stack.md`, `docs/architecture/infrastructure-and-operations.md` | `11f25c740c38` |
 
@@ -167,42 +167,69 @@ o dependiente de ambiente permanece externa a la imagen del contenedor.
 - RRSS-I03-A — Sistema visual, autenticación y shell base (cerrado local y remotamente, commit `63b1309f3eca4ab4e25048f82160c052501fa44d`)
 - RRSS-I03-B — Navegación, estados globales y estructura de aplicación (cerrado local y remotamente, commit `401e452939d797bd12a2cfaead42e3a84b6dbead`)
 - RRSS-I03-C — Patrones de datos, formularios y confirmaciones (cerrado local y remotamente, commit `e7597fb66a9d8bc66aee01fd915be3890a0b8e01`)
+- RRSS-I04-C — Contenido y calendario editorial (cerrado local y remotamente, rama `feature/rrss-i04-content-calendar`, commit `d354126e5eb7b56dcb0906d9675d77dbf15f8a1b`, integrado en main mediante merge `e77ddea24175b3a38939e8530755029288afa1e8`)
 
-**Siguiente bloque:** RRSS-I04-C (contenido y calendario editorial), definido documentalmente, no iniciado, pendiente de autorización
+**Siguiente bloque:** RRSS-I04-D (revisión y aprobación), definido documentalmente, no iniciado, pendiente de autorización
 
 ### Definición operativa del siguiente bloque
 
-**Identificador:** RRSS-I04-C — Contenido y calendario editorial
+**Identificador:** RRSS-I04-D — Revisión y aprobación
 
 **Estado:** Definido documentalmente. No iniciado. Pendiente de autorización.
 
 **Propósito:**
 
-Incorporar contenido y calendario editorial como continuidad de campañas y marcas.
+Incorporar el flujo interno de revisión, observaciones y aprobación de piezas y variantes de contenido (RRSS-I04-C) antes de cualquier publicación futura.
 
 **Alcance incluido:**
 
-Solo piezas maestras, variantes y calendario editorial asociados a campañas y marcas, bajo las reglas existentes de organización, permisos y aislamiento.
+Solicitudes de revisión; revisores autorizados; comentarios u observaciones internas; decisiones de aprobación o solicitud de cambios; historial de decisiones; estados de revisión; relación con piezas y variantes existentes; permisos backend; aislamiento por organización; persistencia; RLS; API; interfaz responsive; indicadores de estado de revisión visibles en Content y en el calendario editorial.
+
+**Estados previstos:**
+
+Como referencia mínima: `PendingReview`, `ChangesRequested`, `Approved`, y `Rejected` (o equivalente) únicamente si la documentación vigente al momento de implementar lo respalda. Estados y transiciones válidas quedan por definir en detalle durante la implementación, sin fijarlos aquí como código.
 
 **Entregables:**
 
-Dominio, contratos, persistencia/RLS, permisos, API, interfaz y documentación operativa limitados a contenido y calendario editorial.
+Dominio, contratos, aplicación, infraestructura, persistencia, migraciones, RLS, permisos, API, interfaz y documentación operativa, limitados al flujo de revisión y aprobación de piezas/variantes.
 
 **Fuera de alcance:**
 
-Revisión/aprobación, publicación real, Meta, archivos creativos, leads, CRM, Analytics, automatizaciones e IA.
+Publicación real, Meta, programación automática, archivos creativos, notificaciones externas, CRM, Analytics, inteligencia artificial, automatizaciones, y aprobación de campañas completas (salvo que ya esté explícitamente aprobada en una definición posterior).
 
 **Dependencias:**
 
-RRSS-I04-A e RRSS-I04-B cerrados e integrados, más los patrones existentes de interfaz y multitenancy.
+RRSS-I04-C cerrado e integrado; Content y calendario editorial operativos; organizaciones, permisos y multitenancy operativos.
 
 **Criterios de entrada:**
 
-Definición aprobada, rama limpia y autorización explícita independiente.
+Definición documental aprobada; autorización explícita del usuario; `main` limpio y sincronizado; RRSS-I04-C integrado en `main`.
 
 **Criterio de cierre futuro:**
 
-Piezas maestras/variantes y calendario editorial vinculados a campañas y marcas, con aislamiento organizacional, sin invadir I04-D.
+El flujo de revisión y aprobación deberá estar implementado de extremo a extremo, con historial de decisiones, permisos backend, aislamiento organizacional, API e interfaz, sin incluir publicación real.
+
+RRSS-I04: continúa abierto (bloque A cerrado e integrado; bloque B cerrado e integrado; bloque C cerrado en la rama `feature/rrss-i04-content-calendar`, pendiente de integración a main; bloque D definido documentalmente, no iniciado, pendiente de autorización). Merge de RRSS-I04-C a main: pendiente de decisión independiente.
+
+Herramienta de gobierno (fuera de los bloques de RRSS-I04): generador determinista de
+DCOS Context Package para ChatGPT implementado en `dcos/public-context/` (ver
+`docs/operations/current-state.md`). Artefacto derivado de la documentación oficial,
+no autoriza ni cierra ningún bloque por sí mismo.
+
+Repositorio público `lalolona/rrss-public-context` creado, publicando únicamente
+`chatgpt-context-package.md`, actualizable de forma controlada mediante
+`.github/workflows/publish-chatgpt-context.yml` (`workflow_dispatch` + `source_commit`
+explícito). El mecanismo regenera el paquete y su manifest privado desde el árbol Git
+exacto de `source_commit` (síntesis narrativa curada protegida por huella SHA-256 +
+estado operativo derivado automáticamente); no copia un Markdown ya comprometido. El
+manifest permanece siempre privado. Ver `docs/operations/current-state.md`. No forma
+parte de los bloques de RRSS-I04 y no autoriza RRSS-I04-B.
+
+Primera publicación certificada completada (`source_commit`
+`33db63afb7487dcf5947e1a617a97d11a4a60dfc`, commit público
+`de2873f62ccb65bbef56e1620e2de2ca8692a66d`); ver `docs/operations/current-state.md`.
+Sigue sin formar parte de los bloques de RRSS-I04 y sin autorizar RRSS-I04-B; merge de
+`feature/rrss-i04-brands` a `main` sigue pendiente de decisión independiente.
 
 **Autorización requerida:** Pendiente de autorización.
 
@@ -210,10 +237,10 @@ Piezas maestras/variantes y calendario editorial vinculados a campañas y marcas
 
 - RRSS-I04-A: cerrado
 - RRSS-I04-B: cerrado
-- RRSS-I04-C: no iniciado
-- RRSS-I04-D: no iniciado
+- RRSS-I04-C: cerrado local y remotamente, integrado en main mediante merge `e77ddea24175b3a38939e8530755029288afa1e8`
+- RRSS-I04-D: no iniciado, definido documentalmente (ver `docs/operations/roadmap.md`), pendiente de autorización
 
-**Merge a main:** Merge de RRSS-I04-B a main: completado (commit de main `519ab6a0a59470a755883f02a30f0f6d44e03ce6`, integrado local y remotamente)
+**Merge a main:** Merge de RRSS-I04-C a main: completado (commit de main `e77ddea24175b3a38939e8530755029288afa1e8`, integrado local y remotamente)
 
 **Estado DCOS:** válido
 
@@ -236,12 +263,12 @@ Piezas maestras/variantes y calendario editorial vinculados a campañas y marcas
 - Empaquetado productivo base: operativo
 - Migrator: operativo
 - Campaigns (RRSS-I04-B): operativo (núcleo de campañas: creación, edición condicionada por estado, transición de estados Draft/Planned/Active/Paused/Finalized/Cancelled, asociación con marca y perfiles sociales activos, cancelación; sin contenido, calendario editorial, revisión/aprobación ni publicación real — reservado para RRSS-I04-C/D)
+- Content y calendario editorial (RRSS-I04-C): operativo (piezas maestras, variantes por perfil social, calendario editorial interno, integración con Campaigns y Brands mediante contratos públicos; sin revisión, aprobación, publicación real ni integración con Meta — reservado para RRSS-I04-D o incrementos posteriores)
 
 **Capacidades no implementadas (derivado, líneas ": no iniciado/a(s)" del estado vigente):**
 
-- Estado de bloque RRSS-I04-C: no iniciado
-- Estado de bloque RRSS-I04-D: no iniciado
-- Módulos funcionales (Content, CRM, Analytics, Files, publicación social real): no iniciados
+- Estado de bloque RRSS-I04-D: no iniciado, definido documentalmente (ver `docs/operations/roadmap.md`), pendiente de autorización
+- Módulos funcionales (CRM, Analytics, Files, publicación social real): no iniciados
 
 **Incrementos definidos en el roadmap (derivado, tabla de contenido de roadmap.md):**
 
