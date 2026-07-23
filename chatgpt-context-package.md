@@ -6,7 +6,7 @@
 
 # DCOS Context Package para ChatGPT — RRSS Platform
 
-**Formato:** chatgpt-context-package/v2 · **Rama de origen:** main · **Commit de origen:** `3ab321d7c609da9e196c8b90711303ff8965c196`
+**Formato:** chatgpt-context-package/v2 · **Rama de origen:** main · **Commit de origen:** `c7c02ec66283e806d72e023a1da07ff57b834b23`
 
 Este paquete no reemplaza al corpus documental de `docs/` ni es una fuente manual de verdad:
 es un artefacto derivado, regenerado desde un `sourceCommit` exacto. No debe editarse
