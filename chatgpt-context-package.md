@@ -6,7 +6,7 @@
 
 # DCOS Context Package para ChatGPT — RRSS Platform
 
-**Formato:** chatgpt-context-package/v2 · **Rama de origen:** main · **Commit de origen:** `af3635a8a2bc9a27ab0e901c0c4ed881be58cc30`
+**Formato:** chatgpt-context-package/v2 · **Rama de origen:** main · **Commit de origen:** `434772c78cd967d7960e1066bb5da82b8598683a`
 
 Este paquete no reemplaza al corpus documental de `docs/` ni es una fuente manual de verdad:
 es un artefacto derivado, regenerado desde un `sourceCommit` exacto. No debe editarse
@@ -35,7 +35,7 @@ manualmente. Su manifest privado (`chatgpt-context-manifest.json`) nunca se publ
 | `product-limits` | `docs/product/non-goals.md` | `b7ce7e2e3e5f` |
 | `technical-architecture` | `docs/architecture/system-architecture.md`, `docs/architecture/technology-stack.md` | `5f65e56423ce` |
 | `multitenancy-security` | `docs/architecture/multitenancy-and-isolation.md`, `docs/architecture/identity-and-access.md`, `docs/architecture/security-and-privacy.md` | `d71ff1f1ce6d` |
-| `operational-rules` | `docs/operations/roadmap.md`, `docs/operations/backlog.md` | `fdde821ba937` |
+| `operational-rules` | `docs/operations/roadmap.md`, `docs/operations/backlog.md` | `8e5dd3da84a5` |
 | `workflow` | `docs/decisions/ADR-001-project-independence.md` | `f3bd14ae040d` |
 | `restrictions` | `docs/architecture/technology-stack.md`, `docs/architecture/infrastructure-and-operations.md` | `11f25c740c38` |
 
@@ -122,8 +122,9 @@ documentado o listado. Avanzar de bloque, cerrar un incremento, o hacer merge a 
 requiere una decisión y autorización explícitas e independientes en cada caso. Una
 definición documental de un bloque tampoco lo inicia ni sustituye su autorización
 explícita: define su alcance, pero el bloque permanece no iniciado hasta que exista esa
-decisión independiente. Caso vigente: RRSS-I04-B (campañas) está definido documentalmente,
-no iniciado, y pendiente de autorización.
+decisión independiente. El estado individual vigente de cada bloque del incremento actual
+se deriva exclusivamente de `docs/operations/current-state.md` (ver "Estado operativo
+vigente" más abajo), nunca de este resumen narrativo ni de una enumeración fija aquí.
 
 ## Gobierno DCOS y flujo de trabajo
 
@@ -161,76 +162,58 @@ o dependiente de ambiente permanece externa a la imagen del contenedor.
 
 **Bloques cerrados del incremento vigente:**
 
+- RRSS-I04-B — Campañas (cerrado local y remotamente, commit `21e6faf0cd5a866a7aa295b8768c94ac95f12ee6`, rama `feature/rrss-i04-campaigns`, integrado en main mediante merge `519ab6a0a59470a755883f02a30f0f6d44e03ce6`)
 - RRSS-I04-A — Marcas y perfiles sociales internos (cerrado local y remotamente, commit `9421c6be718f1053fcdbedd85a272375968b79bc`)
 - RRSS-I03-A — Sistema visual, autenticación y shell base (cerrado local y remotamente, commit `63b1309f3eca4ab4e25048f82160c052501fa44d`)
 - RRSS-I03-B — Navegación, estados globales y estructura de aplicación (cerrado local y remotamente, commit `401e452939d797bd12a2cfaead42e3a84b6dbead`)
 - RRSS-I03-C — Patrones de datos, formularios y confirmaciones (cerrado local y remotamente, commit `e7597fb66a9d8bc66aee01fd915be3890a0b8e01`)
 
-**Siguiente bloque:** RRSS-I04-B (campañas), definido documentalmente, no iniciado, pendiente de autorización
+**Siguiente bloque:** RRSS-I04-C (contenido y calendario editorial), definido documentalmente, no iniciado, pendiente de autorización
 
 ### Definición operativa del siguiente bloque
 
-**Identificador:** RRSS-I04-B — Campañas
+**Identificador:** RRSS-I04-C — Contenido y calendario editorial
 
 **Estado:** Definido documentalmente. No iniciado. Pendiente de autorización.
 
 **Propósito:**
 
-Establecer el núcleo de campañas como unidad de planeación y futura trazabilidad entre marca, contenido, captación, leads y resultados.
+Incorporar contenido y calendario editorial como continuidad de campañas y marcas.
 
 **Alcance incluido:**
 
-Definir e implementar posteriormente:
-
-- campañas pertenecientes a una organización;
-- asociación obligatoria con una marca;
-- asociación con uno o varios perfiles sociales internos compatibles;
-- nombre;
-- descripción o brief;
-- objetivo;
-- estado;
-- fecha inicial y final planeadas;
-- canales previstos;
-- presupuesto y moneda opcionales;
-- responsable opcional, solamente si puede utilizarse el modelo existente sin nuevo acoplamiento;
-- auditoría básica;
-- permisos organizacionales;
-- aislamiento mediante `OrganizationId`;
-- persistencia y RLS;
-- API;
-- listado, búsqueda, filtros y paginación;
-- creación, edición, detalle y cambio de estado;
-- interfaz responsive basada en los patrones existentes.
-
-**Estados previstos:**
-
-Como base: borrador, planeada, activa, pausada, finalizada, cancelada. La implementación posterior deberá documentar y aplicar las transiciones válidas.
+Solo piezas maestras, variantes y calendario editorial asociados a campañas y marcas, bajo las reglas existentes de organización, permisos y aislamiento.
 
 **Entregables:**
 
-Dominio, contratos, aplicación, infraestructura, persistencia, migración, RLS, permisos, API, interfaz, documentación operativa.
+Dominio, contratos, persistencia/RLS, permisos, API, interfaz y documentación operativa limitados a contenido y calendario editorial.
 
 **Fuera de alcance:**
 
-Contenido y publicaciones, calendario editorial, revisión y aprobación, archivos creativos, publicación real en redes, conexión con Meta, Meta Ads, leads, CRM, métricas, atribución, reportes, automatizaciones, inteligencia artificial.
+Revisión/aprobación, publicación real, Meta, archivos creativos, leads, CRM, Analytics, automatizaciones e IA.
 
 **Dependencias:**
 
-RRSS-I04-A cerrado; marcas y perfiles sociales internos disponibles; organizaciones, autorización y multitenancy operativos; patrones visuales y de datos existentes.
+RRSS-I04-A e RRSS-I04-B cerrados e integrados, más los patrones existentes de interfaz y multitenancy.
 
 **Criterios de entrada:**
 
-Definición documental aprobada; autorización explícita del usuario; rama base limpia y sincronizada; RRSS-I04-A integrado.
+Definición aprobada, rama limpia y autorización explícita independiente.
 
 **Criterio de cierre futuro:**
 
-RRSS-I04-B podrá considerarse cerrado cuando el flujo de campañas esté implementado de extremo a extremo con dominio, persistencia, aislamiento organizacional, permisos backend, API e interfaz, sin incluir funcionalidades reservadas para RRSS-I04-C y RRSS-I04-D.
+Piezas maestras/variantes y calendario editorial vinculados a campañas y marcas, con aislamiento organizacional, sin invadir I04-D.
 
 **Autorización requerida:** Pendiente de autorización.
 
-**Bloques de RRSS-I04 no iniciados:** RRSS-I04-B (campañas), RRSS-I04-C (contenido y calendario editorial), RRSS-I04-D (revisión y aprobación)
+**Estado individual de los bloques del incremento vigente (derivado, uno por bloque):**
 
-**Merge a main:** Merge de RRSS-I04-A a main: completado (commit de main `87ee19549d82b534861052a529e57f8a51b9227e`, integrado local y remotamente)
+- RRSS-I04-A: cerrado
+- RRSS-I04-B: cerrado
+- RRSS-I04-C: no iniciado
+- RRSS-I04-D: no iniciado
+
+**Merge a main:** Merge de RRSS-I04-B a main: completado (commit de main `519ab6a0a59470a755883f02a30f0f6d44e03ce6`, integrado local y remotamente)
 
 **Estado DCOS:** válido
 
@@ -252,10 +235,13 @@ RRSS-I04-B podrá considerarse cerrado cuando el flujo de campañas esté implem
 - Diálogos y confirmaciones: operativos (Modal con focus trap, Dialog, ConfirmDialog)
 - Empaquetado productivo base: operativo
 - Migrator: operativo
+- Campaigns (RRSS-I04-B): operativo (núcleo de campañas: creación, edición condicionada por estado, transición de estados Draft/Planned/Active/Paused/Finalized/Cancelled, asociación con marca y perfiles sociales activos, cancelación; sin contenido, calendario editorial, revisión/aprobación ni publicación real — reservado para RRSS-I04-C/D)
 
 **Capacidades no implementadas (derivado, líneas ": no iniciado/a(s)" del estado vigente):**
 
-- Módulos funcionales (Campaigns, Content, CRM, Analytics, Files, publicación social real): no iniciados
+- Estado de bloque RRSS-I04-C: no iniciado
+- Estado de bloque RRSS-I04-D: no iniciado
+- Módulos funcionales (Content, CRM, Analytics, Files, publicación social real): no iniciados
 
 **Incrementos definidos en el roadmap (derivado, tabla de contenido de roadmap.md):**
 
