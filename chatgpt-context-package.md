@@ -6,7 +6,7 @@
 
 # DCOS Context Package para ChatGPT — RRSS Platform
 
-**Formato:** chatgpt-context-package/v2 · **Rama de origen:** main · **Commit de origen:** `704449c2c9dd8fa31d4811d14df844c6d7627f39`
+**Formato:** chatgpt-context-package/v2 · **Rama de origen:** main · **Commit de origen:** `af3635a8a2bc9a27ab0e901c0c4ed881be58cc30`
 
 Este paquete no reemplaza al corpus documental de `docs/` ni es una fuente manual de verdad:
 es un artefacto derivado, regenerado desde un `sourceCommit` exacto. No debe editarse
@@ -167,6 +167,66 @@ o dependiente de ambiente permanece externa a la imagen del contenedor.
 - RRSS-I03-C — Patrones de datos, formularios y confirmaciones (cerrado local y remotamente, commit `e7597fb66a9d8bc66aee01fd915be3890a0b8e01`)
 
 **Siguiente bloque:** RRSS-I04-B (campañas), definido documentalmente, no iniciado, pendiente de autorización
+
+### Definición operativa del siguiente bloque
+
+**Identificador:** RRSS-I04-B — Campañas
+
+**Estado:** Definido documentalmente. No iniciado. Pendiente de autorización.
+
+**Propósito:**
+
+Establecer el núcleo de campañas como unidad de planeación y futura trazabilidad entre marca, contenido, captación, leads y resultados.
+
+**Alcance incluido:**
+
+Definir e implementar posteriormente:
+
+- campañas pertenecientes a una organización;
+- asociación obligatoria con una marca;
+- asociación con uno o varios perfiles sociales internos compatibles;
+- nombre;
+- descripción o brief;
+- objetivo;
+- estado;
+- fecha inicial y final planeadas;
+- canales previstos;
+- presupuesto y moneda opcionales;
+- responsable opcional, solamente si puede utilizarse el modelo existente sin nuevo acoplamiento;
+- auditoría básica;
+- permisos organizacionales;
+- aislamiento mediante `OrganizationId`;
+- persistencia y RLS;
+- API;
+- listado, búsqueda, filtros y paginación;
+- creación, edición, detalle y cambio de estado;
+- interfaz responsive basada en los patrones existentes.
+
+**Estados previstos:**
+
+Como base: borrador, planeada, activa, pausada, finalizada, cancelada. La implementación posterior deberá documentar y aplicar las transiciones válidas.
+
+**Entregables:**
+
+Dominio, contratos, aplicación, infraestructura, persistencia, migración, RLS, permisos, API, interfaz, documentación operativa.
+
+**Fuera de alcance:**
+
+Contenido y publicaciones, calendario editorial, revisión y aprobación, archivos creativos, publicación real en redes, conexión con Meta, Meta Ads, leads, CRM, métricas, atribución, reportes, automatizaciones, inteligencia artificial.
+
+**Dependencias:**
+
+RRSS-I04-A cerrado; marcas y perfiles sociales internos disponibles; organizaciones, autorización y multitenancy operativos; patrones visuales y de datos existentes.
+
+**Criterios de entrada:**
+
+Definición documental aprobada; autorización explícita del usuario; rama base limpia y sincronizada; RRSS-I04-A integrado.
+
+**Criterio de cierre futuro:**
+
+RRSS-I04-B podrá considerarse cerrado cuando el flujo de campañas esté implementado de extremo a extremo con dominio, persistencia, aislamiento organizacional, permisos backend, API e interfaz, sin incluir funcionalidades reservadas para RRSS-I04-C y RRSS-I04-D.
+
+**Autorización requerida:** Pendiente de autorización.
 
 **Bloques de RRSS-I04 no iniciados:** RRSS-I04-B (campañas), RRSS-I04-C (contenido y calendario editorial), RRSS-I04-D (revisión y aprobación)
 
