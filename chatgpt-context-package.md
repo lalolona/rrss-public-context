@@ -6,7 +6,7 @@
 
 # DCOS Context Package para ChatGPT — RRSS Platform
 
-**Formato:** chatgpt-context-package/v2 · **Rama de origen:** main · **Commit de origen:** `c7c02ec66283e806d72e023a1da07ff57b834b23`
+**Formato:** chatgpt-context-package/v2 · **Rama de origen:** main · **Commit de origen:** `dc98cd9b9cd29ecf8bd11c2f32734d66baa4c1c2`
 
 Este paquete no reemplaza al corpus documental de `docs/` ni es una fuente manual de verdad:
 es un artefacto derivado, regenerado desde un `sourceCommit` exacto. No debe editarse
@@ -264,6 +264,7 @@ Sigue sin formar parte de los bloques de RRSS-I04 y sin autorizar RRSS-I04-B; me
 - Migrator: operativo
 - Campaigns (RRSS-I04-B): operativo (núcleo de campañas: creación, edición condicionada por estado, transición de estados Draft/Planned/Active/Paused/Finalized/Cancelled, asociación con marca y perfiles sociales activos, cancelación; sin contenido, calendario editorial, revisión/aprobación ni publicación real — reservado para RRSS-I04-C/D)
 - Content y calendario editorial (RRSS-I04-C): operativo (piezas maestras, variantes por perfil social, calendario editorial interno, integración con Campaigns y Brands mediante contratos públicos; sin revisión, aprobación, publicación real ni integración con Meta — reservado para RRSS-I04-D o incrementos posteriores)
+- Mejora operativa de DCOS (plantilla documental canónica, anclas reservadas, validación temprana, prompts reutilizables de implementación y cierre): operativa
 
 **Capacidades no implementadas (derivado, líneas ": no iniciado/a(s)" del estado vigente):**
 
