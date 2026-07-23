@@ -6,7 +6,7 @@
 
 # DCOS Context Package para ChatGPT — RRSS Platform
 
-**Formato:** chatgpt-context-package/v2 · **Rama de origen:** feature/rrss-i04-brands · **Commit de origen:** `33db63afb7487dcf5947e1a617a97d11a4a60dfc`
+**Formato:** chatgpt-context-package/v2 · **Rama de origen:** main · **Commit de origen:** `d5eb066ef948c338b4895f5754930dc394fb9360`
 
 Este paquete no reemplaza al corpus documental de `docs/` ni es una fuente manual de verdad:
 es un artefacto derivado, regenerado desde un `sourceCommit` exacto. No debe editarse
@@ -35,7 +35,7 @@ manualmente. Su manifest privado (`chatgpt-context-manifest.json`) nunca se publ
 | `product-limits` | `docs/product/non-goals.md` | `b7ce7e2e3e5f` |
 | `technical-architecture` | `docs/architecture/system-architecture.md`, `docs/architecture/technology-stack.md` | `5f65e56423ce` |
 | `multitenancy-security` | `docs/architecture/multitenancy-and-isolation.md`, `docs/architecture/identity-and-access.md`, `docs/architecture/security-and-privacy.md` | `d71ff1f1ce6d` |
-| `operational-rules` | `docs/operations/roadmap.md`, `docs/operations/backlog.md` | `8be49b934656` |
+| `operational-rules` | `docs/operations/roadmap.md`, `docs/operations/backlog.md` | `9f2602ec4a23` |
 | `workflow` | `docs/decisions/ADR-001-project-independence.md` | `f3bd14ae040d` |
 | `restrictions` | `docs/architecture/technology-stack.md`, `docs/architecture/infrastructure-and-operations.md` | `11f25c740c38` |
 
@@ -166,7 +166,7 @@ o dependiente de ambiente permanece externa a la imagen del contenedor.
 
 **Bloques de RRSS-I04 no iniciados:** RRSS-I04-B (campañas), RRSS-I04-C (contenido y calendario editorial), RRSS-I04-D (revisión y aprobación)
 
-**Merge a main:** Merge de RRSS-I04-A a main: pendiente de decisión independiente
+**Merge a main:** Merge de RRSS-I04-A a main: completado (commit de main `87ee19549d82b534861052a529e57f8a51b9227e`, integrado local y remotamente)
 
 **Estado DCOS:** válido
 
