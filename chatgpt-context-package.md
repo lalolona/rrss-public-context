@@ -6,7 +6,7 @@
 
 # DCOS Context Package para ChatGPT — RRSS Platform
 
-**Formato:** chatgpt-context-package/v2 · **Rama de origen:** main · **Commit de origen:** `c7292bc5937e22e2b9ae323b2ad5e3d9308d5299`
+**Formato:** chatgpt-context-package/v2 · **Rama de origen:** main · **Commit de origen:** `cd5b0b02a2fce23d630d94d33578bda08ccd4d1d`
 
 Este paquete no reemplaza al corpus documental de `docs/` ni es una fuente manual de verdad:
 es un artefacto derivado, regenerado desde un `sourceCommit` exacto. No debe editarse
@@ -35,7 +35,7 @@ manualmente. Su manifest privado (`chatgpt-context-manifest.json`) nunca se publ
 | `product-limits` | `docs/product/non-goals.md` | `b7ce7e2e3e5f` |
 | `technical-architecture` | `docs/architecture/system-architecture.md`, `docs/architecture/technology-stack.md` | `5f65e56423ce` |
 | `multitenancy-security` | `docs/architecture/multitenancy-and-isolation.md`, `docs/architecture/identity-and-access.md`, `docs/architecture/security-and-privacy.md` | `d71ff1f1ce6d` |
-| `operational-rules` | `docs/operations/roadmap.md`, `docs/operations/backlog.md` | `4e473f2806ed` |
+| `operational-rules` | `docs/operations/roadmap.md`, `docs/operations/backlog.md` | `40d1ed2a52ee` |
 | `workflow` | `docs/decisions/ADR-001-project-independence.md` | `f3bd14ae040d` |
 | `restrictions` | `docs/architecture/technology-stack.md`, `docs/architecture/infrastructure-and-operations.md` | `11f25c740c38` |
 
@@ -153,7 +153,7 @@ o dependiente de ambiente permanece externa a la imagen del contenedor.
 
 ## Estado operativo vigente (derivado)
 
-**Incremento vigente:** RRSS-I09 — Meta Lead Ads
+**Incremento vigente:** RRSS-I10 — Métricas de Facebook e Instagram
 
 **Incrementos cerrados:**
 
@@ -163,6 +163,7 @@ o dependiente de ambiente permanece externa a la imagen del contenedor.
 - RRSS-I06 (RRSS-I06-A) — CRM ligero
 - RRSS-I07 (RRSS-I07-A) — Analítica
 - RRSS-I08 (RRSS-I08-A) — Validación con DIGART
+- RRSS-I09 (RRSS-I09-A) — Meta Lead Ads
 
 **Bloques cerrados del incremento vigente:**
 
@@ -176,46 +177,71 @@ o dependiente de ambiente permanece externa a la imagen del contenedor.
 - RRSS-I06-A — CRM ligero (cerrado local y remotamente, commit `bed4728281161fc6448f9115e7a7aa77b843f99402`, rama `feature/rrss-i06a-light-crm`, integrado en main mediante merge `c8b353e1037d8dec59aee4e4cdc57794ca36b068`)
 - RRSS-I07-A — Analítica (cerrado local y remotamente, commit `8eba5f87f6f910975ef90e2c7684d4385dafe404`, rama `feature/rrss-i07a-analytics`, integrado en main mediante merge `27be48e0953c5d5e89ef09da995d71638d74ffa5`)
 - RRSS-I08-A — Validación con DIGART (cerrado local y remotamente, commit `bb1e402fc40bd6cd8c41de0d9370c1faf5ccbb41`, rama `feature/rrss-i08a-digart-validation`, integrado en main mediante merge `336cfcee532653f1b07c1a11f2f3a920bea00368`)
+- RRSS-I09-A — Meta Lead Ads (cerrado local y remotamente, commit `ec3a8775e497d73d43bd6fdb67418cc78a335feb`, rama `feature/rrss-i09a-meta-lead-ads`, integrado en main mediante merge `a0a2ac33f0288c3f565b46a3a81497bf1d203742`)
 
-**Siguiente bloque:** RRSS-I09-A — Meta Lead Ads, definido documentalmente. No iniciado. Pendiente de autorización.
+**Siguiente bloque:** RRSS-I10-A — Métricas de Facebook e Instagram, definido documentalmente. No iniciado. Pendiente de autorización.
 
 ### Definición operativa del siguiente bloque
 
-**Identificador:** RRSS-I09-A — Meta Lead Ads
+**Identificador:** RRSS-I10-A — Métricas de Facebook e Instagram
 
 **Estado:** Definido documentalmente. No iniciado. Pendiente de autorización.
 
 **Propósito:**
 
-Implementar la primera integración externa real de RRSS Platform, mediante un adaptador hacia Meta Lead Ads, para la captura automática de leads, como continuación directa de RRSS-I08 (validación con DIGART), ya cerrado, según el objetivo conceptual ya registrado arriba para RRSS-I09.
+Incorporar métricas automáticas de contenido y campañas desde Meta (Facebook e Instagram), mediante
+un adaptador, como continuación directa de RRSS-I09 (Meta Lead Ads), ya cerrado, según el objetivo
+conceptual ya registrado arriba para RRSS-I10.
 
 **Alcance incluido:**
 
-Adaptador de captura automática de leads desde Meta Lead Ads hacia el CRM ligero ya operativo (RRSS-I06-A), sin duplicar ni reemplazar la captura manual — exactamente lo declarado en el objetivo y criterio de cierre conceptuales de RRSS-I09 ya registrados arriba; permisos organizacionales, aislamiento mediante `OrganizationId`, persistencia y RLS, API e interfaz responsive, siguiendo el mismo patrón operativo que los incrementos anteriores. Este bloque cubre el alcance completo de RRSS-I09 tal como está definido hoy; una eventual subdivisión en bloques adicionales queda por decidir durante la implementación, sin fijarla aquí.
+Adaptador que obtiene métricas automáticas de Facebook e Instagram vía Graph API, reutilizando la
+conexión por página/formulario ya establecida en `RRSS.Modules.Integrations` (RRSS-I09-A), y las
+incorpora a la analítica ya operativa (RRSS-I07-A) para que convivan con las métricas manuales
+existentes (`CampaignMetricEntry`) sin sustituirlas por defecto — exactamente lo declarado en el
+objetivo y criterio de cierre conceptuales de RRSS-I10 ya registrados arriba; permisos
+organizacionales, aislamiento mediante `OrganizationId`, persistencia y RLS, API e interfaz
+responsive, siguiendo el mismo patrón operativo que los incrementos anteriores. Este bloque cubre el
+alcance completo de RRSS-I10 tal como está definido hoy; una eventual subdivisión en bloques
+adicionales queda por decidir durante la implementación, sin fijarla aquí.
 
 **Estados previstos:**
 
-Como referencia mínima, sobre un lead capturado automáticamente: recibido, deduplicado o nuevo, incorporado al flujo de calificación manual ya operativo. Estados y transiciones válidas, si aplican, quedan por definir en detalle durante la implementación, sin fijarlos aquí como código.
+Como referencia mínima, sobre una campaña con métricas automáticas: sin datos automáticos, con datos
+automáticos parciales, con datos automáticos completos — conviviendo con la suficiencia manual
+`Partial`/`Sufficient` ya operativa, sin sustituirla. Estados y transiciones válidas, si aplican,
+quedan por definir en detalle durante la implementación, sin fijarlos aquí como código.
 
 **Entregables:**
 
-Dominio, contratos, aplicación, infraestructura, persistencia, migraciones, RLS, permisos, API e interfaz para el adaptador de Meta Lead Ads, limitados a captura automática sin duplicar la manual; extensión de la clasificación de origen de leads (`LeadSource`) para distinguir Facebook e Instagram, con una clave de origen externa que permita deduplicar contra leads capturados manualmente — requisito identificado durante la validación de RRSS-I08-A, ver `docs/operations/digart-validation.md`.
+Dominio, contratos, aplicación, infraestructura, persistencia, migraciones, RLS, permisos, API e
+interfaz para el adaptador de métricas automáticas de Facebook e Instagram, integradas con la
+analítica ya operativa sin sustituir las métricas manuales existentes.
 
 **Fuera de alcance:**
 
-Métricas automáticas de Facebook e Instagram (reservado para RRSS-I10); publicación automática (reservado para RRSS-I11); envío a CRM externo (reservado para RRSS-I12); scoring predictivo, atribución multicanal, inteligencia artificial generativa y automatizaciones (diferidos, ver "Diferidos" en `docs/operations/backlog.md`); cualquier dependencia estructural hacia DIGART.
+Publicación automática (reservado para RRSS-I11); envío a CRM externo (reservado para RRSS-I12);
+scoring predictivo, atribución multicanal avanzada, inteligencia artificial generativa y
+automatizaciones (diferidos, ver "Diferidos" en `docs/operations/backlog.md`); cualquier reemplazo o
+sustitución por defecto de las métricas manuales ya operativas; cualquier dependencia estructural
+hacia DIGART.
 
 **Dependencias:**
 
-RRSS-I06-A (CRM ligero) y RRSS-I08-A (validación con DIGART) cerrados e integrados en `main`: captura manual de leads, calificación y CRM ligero operativos, flujo comercial completo validado con datos representativos de DIGART. Requiere, antes de iniciar la captura automática: `LeadSource` extendido para distinguir Facebook e Instagram, y una clave de origen externa para deduplicar contra leads capturados manualmente — sin implementarse todavía.
+RRSS-I07-A (Analítica) y RRSS-I09-A (Meta Lead Ads) cerrados e integrados en `main`: métricas
+manuales, reportes por campaña, y adaptador/módulo `RRSS.Modules.Integrations` con conexión Meta por
+página/formulario operativos. Requiere, antes de operar en producción, configuración y validación con
+credenciales reales de Meta — no implementado ni autorizado en este cierre.
 
 **Criterios de entrada:**
 
-Definición documental aprobada; autorización explícita del usuario; `main` limpio y sincronizado; RRSS-I08-A integrado en `main`; extensión de `LeadSource` y clave de deduplicación resueltas antes de iniciar la captura automática.
+Definición documental aprobada; autorización explícita del usuario; `main` limpio y sincronizado;
+RRSS-I09-A integrado en `main`.
 
 **Criterio de cierre futuro:**
 
-Los leads de Meta Lead Ads se capturan sin duplicar ni reemplazar la captura manual — el mismo criterio de cierre conceptual ya registrado arriba para RRSS-I09.
+Las métricas automáticas conviven con las métricas manuales sin sustituirlas por defecto — el mismo
+criterio de cierre conceptual ya registrado arriba para RRSS-I10.
 
 **Autorización requerida:** Pendiente de autorización.
 
@@ -223,7 +249,7 @@ Los leads de Meta Lead Ads se capturan sin duplicar ni reemplazar la captura man
 
 - Ninguno registrado.
 
-**Merge a main:** Merge de RRSS-I08-A a main: completado (commit de main `336cfcee532653f1b07c1a11f2f3a920bea00368`, integrado local y remotamente)
+**Merge a main:** Merge de RRSS-I09-A a main: completado (commit de main `a0a2ac33f0288c3f565b46a3a81497bf1d203742`, integrado local y remotamente)
 
 **Estado DCOS:** válido
 
