@@ -6,7 +6,7 @@
 
 # DCOS Context Package para ChatGPT — RRSS Platform
 
-**Formato:** chatgpt-context-package/v2 · **Rama de origen:** main · **Commit de origen:** `e142a982d39d8530f1fc7f46050a64710cf3482b`
+**Formato:** chatgpt-context-package/v2 · **Rama de origen:** main · **Commit de origen:** `27be5eac5b52cfb87ee26894fcbadaf44320a1e8`
 
 Este paquete no reemplaza al corpus documental de `docs/` ni es una fuente manual de verdad:
 es un artefacto derivado, regenerado desde un `sourceCommit` exacto. No debe editarse
@@ -35,7 +35,7 @@ manualmente. Su manifest privado (`chatgpt-context-manifest.json`) nunca se publ
 | `product-limits` | `docs/product/non-goals.md` | `b7ce7e2e3e5f` |
 | `technical-architecture` | `docs/architecture/system-architecture.md`, `docs/architecture/technology-stack.md` | `5f65e56423ce` |
 | `multitenancy-security` | `docs/architecture/multitenancy-and-isolation.md`, `docs/architecture/identity-and-access.md`, `docs/architecture/security-and-privacy.md` | `d71ff1f1ce6d` |
-| `operational-rules` | `docs/operations/roadmap.md`, `docs/operations/backlog.md` | `b92f1bf5dc60` |
+| `operational-rules` | `docs/operations/roadmap.md`, `docs/operations/backlog.md` | `f92c0fabeaca` |
 | `workflow` | `docs/decisions/ADR-001-project-independence.md` | `f3bd14ae040d` |
 | `restrictions` | `docs/architecture/technology-stack.md`, `docs/architecture/infrastructure-and-operations.md` | `11f25c740c38` |
 
@@ -153,7 +153,7 @@ o dependiente de ambiente permanece externa a la imagen del contenedor.
 
 ## Estado operativo vigente (derivado)
 
-**Incremento vigente:** RRSS-I07 — Analítica
+**Incremento vigente:** RRSS-I08 — Validación con DIGART
 
 **Incrementos cerrados:**
 
@@ -161,6 +161,7 @@ o dependiente de ambiente permanece externa a la imagen del contenedor.
 - RRSS-I03 (RRSS-I03-A a C) — Interfaz base y sistema visual
 - RRSS-I04 (RRSS-I04-A a D) — Núcleo editorial y planeación social
 - RRSS-I06 (RRSS-I06-A) — CRM ligero
+- RRSS-I07 (RRSS-I07-A) — Analítica
 
 **Bloques cerrados del incremento vigente:**
 
@@ -172,46 +173,47 @@ o dependiente de ambiente permanece externa a la imagen del contenedor.
 - RRSS-I03-C — Patrones de datos, formularios y confirmaciones (cerrado local y remotamente, commit `e7597fb66a9d8bc66aee01fd915be3890a0b8e01`)
 - RRSS-I04-C — Contenido y calendario editorial (cerrado local y remotamente, rama `feature/rrss-i04-content-calendar`, commit `d354126e5eb7b56dcb0906d9675d77dbf15f8a1b`, integrado en main mediante merge `e77ddea24175b3a38939e8530755029288afa1e8`)
 - RRSS-I06-A — CRM ligero (cerrado local y remotamente, commit `bed4728281161fc6448f9115e7a7aa77b843f99402`, rama `feature/rrss-i06a-light-crm`, integrado en main mediante merge `c8b353e1037d8dec59aee4e4cdc57794ca36b068`)
+- RRSS-I07-A — Analítica (cerrado local y remotamente, commit `8eba5f87f6f910975ef90e2c7684d4385dafe404`, rama `feature/rrss-i07a-analytics`, integrado en main mediante merge `27be48e0953c5d5e89ef09da995d71638d74ffa5`)
 
-**Siguiente bloque:** RRSS-I07-A — Analítica, definido documentalmente. No iniciado. Pendiente de autorización.
+**Siguiente bloque:** RRSS-I08-A — Validación con DIGART, definido documentalmente. No iniciado. Pendiente de autorización.
 
 ### Definición operativa del siguiente bloque
 
-**Identificador:** RRSS-I07-A — Analítica
+**Identificador:** RRSS-I08-A — Validación con DIGART
 
 **Estado:** Definido documentalmente. No iniciado. Pendiente de autorización.
 
 **Propósito:**
 
-Incorporar analítica ligera de RRSS Platform (métricas manuales y reportes básicos) sobre el recorrido completo ya operativo (marcas, campañas, contenido, revisión/aprobación y CRM ligero), como continuación directa de RRSS-I06, ya cerrado, según el objetivo conceptual ya registrado arriba para RRSS-I07.
+Operar el flujo comercial completo de RRSS Platform (campaña → contenido → captación → lead → calificación → oportunidad → seguimiento → venta o pérdida) contra el entorno real de DIGART, como primer caso de uso y validación del producto, sin convertir a DIGART en una dependencia estructural, según el objetivo conceptual ya registrado arriba para RRSS-I08.
 
 **Alcance incluido:**
 
-Registro y consulta de métricas manuales y reportes básicos que permitan atribuir oportunidades, ventas e ingresos a una campaña — exactamente lo declarado en el objetivo y criterio de cierre conceptuales de RRSS-I07 ya registrados arriba; permisos organizacionales, aislamiento mediante `OrganizationId`, persistencia y RLS, API e interfaz responsive, siguiendo el mismo patrón operativo que los incrementos anteriores. Este bloque cubre el alcance completo de RRSS-I07 tal como está definido hoy; una eventual subdivisión en bloques adicionales queda por decidir durante la implementación, sin fijarla aquí.
+Ejecución y observación del flujo completo ya operativo (marcas, campañas, contenido/calendario editorial, revisión/aprobación, CRM ligero y analítica manual) sobre datos reales de al menos una campaña de DIGART, hasta su cierre como venta o pérdida — exactamente lo declarado en el objetivo y criterio de cierre conceptuales de RRSS-I08 ya registrados arriba; no introduce necesariamente nuevo dominio, persistencia ni API propios: su entregable principal es la validación end-to-end y el registro de hallazgos, con correcciones focalizadas si surgen defectos reales durante la validación. Este bloque cubre el alcance completo de RRSS-I08 tal como está definido hoy; una eventual subdivisión en bloques adicionales queda por decidir durante la implementación, sin fijarla aquí.
 
 **Estados previstos:**
 
-Como referencia mínima, sobre un reporte o métrica registrada: sin datos, con datos parciales, con datos suficientes para atribución. Estados y transiciones válidas, si aplican, quedan por definir en detalle durante la implementación, sin fijarlos aquí como código.
+Como referencia mínima, sobre el recorrido validado: sin iniciar, en curso, completado hasta venta o pérdida. Estados y transiciones válidas, si aplican, quedan por definir en detalle durante la implementación, sin fijarlos aquí como código.
 
 **Entregables:**
 
-Dominio, contratos, aplicación, infraestructura, persistencia, migraciones, RLS, permisos, API, interfaz y documentación operativa, limitados a métricas manuales y reportes básicos de atribución.
+Registro operativo de al menos una campaña real de DIGART recorriendo el flujo completo hasta venta o pérdida; correcciones focalizadas a defectos reales descubiertos durante la validación, si los hay; documentación operativa de los hallazgos.
 
 **Fuera de alcance:**
 
-Métricas automáticas de Facebook e Instagram (reservado para RRSS-I10); integración con Meta Lead Ads (reservado para RRSS-I09); publicación automática (reservado para RRSS-I11); envío a CRM externo (reservado para RRSS-I12); atribución multicanal avanzada, inteligencia artificial generativa y automatizaciones (diferidos, ver "Diferidos" en `docs/operations/backlog.md`); cualquier publicación o programación real en redes sociales.
+Nuevos módulos funcionales o dominios de negocio no ya operativos (Meta Lead Ads, métricas automáticas de Facebook/Instagram, publicación automática, entrega a CRM externo — reservados para RRSS-I09 a RRSS-I12); cualquier dependencia estructural hacia procesos, herramientas o convenciones propias de DIGART; scoring predictivo, atribución multicanal, inteligencia artificial generativa y automatizaciones (diferidos, ver "Diferidos" en `docs/operations/backlog.md`).
 
 **Dependencias:**
 
-RRSS-I04 (bloques A a D) y RRSS-I06-A cerrados e integrados en `main`: marcas, campañas, contenido/calendario editorial, revisión/aprobación y CRM ligero operativos; organizaciones, permisos y multitenancy operativos.
+RRSS-I04 (bloques A a D), RRSS-I06-A y RRSS-I07-A cerrados e integrados en `main`: marcas, campañas, contenido/calendario editorial, revisión/aprobación, CRM ligero y analítica manual operativos.
 
 **Criterios de entrada:**
 
-Definición documental aprobada; autorización explícita del usuario; `main` limpio y sincronizado; RRSS-I06-A integrado en `main`.
+Definición documental aprobada; autorización explícita del usuario; `main` limpio y sincronizado; RRSS-I07-A integrado en `main`; acceso real al entorno de DIGART para operar el flujo.
 
 **Criterio de cierre futuro:**
 
-Será posible atribuir oportunidades, ventas e ingresos a una campaña mediante reportes basados en métricas manuales, de extremo a extremo, con dominio, persistencia, aislamiento organizacional, permisos backend, API e interfaz — el mismo criterio de cierre conceptual ya registrado arriba para RRSS-I07.
+Al menos una campaña real de DIGART recorre el flujo completo hasta venta o pérdida — el mismo criterio de cierre conceptual ya registrado arriba para RRSS-I08.
 
 **Autorización requerida:** Pendiente de autorización.
 
@@ -219,7 +221,7 @@ Será posible atribuir oportunidades, ventas e ingresos a una campaña mediante 
 
 - Ninguno registrado.
 
-**Merge a main:** Merge de RRSS-I06-A a main: completado (commit de main `c8b353e1037d8dec59aee4e4cdc57794ca36b068`, integrado local y remotamente)
+**Merge a main:** Merge de RRSS-I07-A a main: completado (commit de main `27be48e0953c5d5e89ef09da995d71638d74ffa5`, integrado local y remotamente)
 
 **Estado DCOS:** válido
 
@@ -245,6 +247,7 @@ Será posible atribuir oportunidades, ventas e ingresos a una campaña mediante 
 - Content y calendario editorial (RRSS-I04-C): operativo (piezas maestras, variantes por perfil social, calendario editorial interno, integración con Campaigns y Brands mediante contratos públicos, integración con Review para revisión y aprobación de variantes; sin publicación real ni integración con Meta — reservado para incrementos posteriores)
 - Revisión y aprobación (RRSS-I04-D): operativo (solicitudes de revisión por variante de contenido, comentarios internos, decisiones de aprobar/rechazar/solicitar cambios con historial inmutable de decisiones, reenvío tras cambios solicitados, indicadores de estado de revisión visibles en Content y en el calendario editorial; sin publicación real ni integración con Meta — reservado para incrementos posteriores)
 - CRM ligero (RRSS-I06-A): operativo (leads con captación manual, calificación manual sin scoring predictivo -Nuevo/Calificado/Convertido/Descalificado-, notas internas inmutables, historial de actividad inmutable, próximo seguimiento opcional, conversión a oportunidad 1:1 y cierre de oportunidad como venta o pérdida sin monto/cotización/facturación; archivado/restaurado ortogonal al estado; sin scoring predictivo, sin automatizaciones, sin captación externa -Meta Lead Ads u otra- — reservado para incrementos posteriores)
+- Analítica (RRSS-I07-A): operativo (métricas manuales por campaña -oportunidades, ventas, ingresos, moneda, notas internas-, suficiencia derivada Partial/Sufficient, archivado/restaurado ortogonal; reportes por rango de fechas con desglose por campaña e ingresos agrupados por moneda sin mezclar entre sí; sin métricas automáticas de Meta, sin Meta Lead Ads, sin sincronización con CRM, sin scoring predictivo, sin atribución multicanal — reservado para incrementos posteriores)
 - Mejora operativa de DCOS (plantilla documental canónica, anclas reservadas, validación temprana, prompts reutilizables de implementación y cierre): operativa
 
 **Capacidades no implementadas (derivado, líneas ": no iniciado/a(s)" del estado vigente):**
